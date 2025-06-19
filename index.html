@@ -169,7 +169,6 @@
       <h3 class="click-progress">Tuliskan Pendapat Anda!</h3>
       <textarea placeholder="Komentar Anda sebagai Netijen +62..."></textarea>
       <div id="comments"></div>
-      
     </div>
   </section>
 
@@ -376,5 +375,46 @@
   </script>
 
 <script type="module" src="script.js"></script>
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
+    authDomain: "altan-forum.firebaseapp.com",
+    databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "altan-forum",
+    storageBucket: "altan-forum.appspot.com",
+    messagingSenderId: "490273623604",
+    appId: "1:490273623604:web:93c774600c5d13a3240461",
+    measurementId: "G-V8NL4Q4RF2"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.database();
+
+  var commentBox = document.querySelector('#forum textarea');
+  var commentList = document.getElementById('comments');
+
+  commentBox.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      var isi = commentBox.value.trim();
+      if (isi !== "") {
+        db.ref("komentar").push({ text: isi });
+        commentBox.value = "";
+      }
+    }
+  });
+
+  db.ref("komentar").on('child_added', function(snapshot) {
+    var data = snapshot.val();
+    var div = document.createElement('div');
+    div.className = 'comment';
+    div.textContent = "Netijen +62: " + data.text;
+    commentList.prepend(div);
+  });
+</script>
 </body>
 </html>
