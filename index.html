@@ -156,8 +156,9 @@
     <div class="img-right" class="click-progress">
       <img src="foto3.jpg" alt="Foto 3">
       <div class="click-progress"><h2 class="click-progress">Aku Suka Makan Juga</h2><p class="desc" class="click-progress">Sekarang Aku Akan Menginjak Usia 14 Tahun!,
-        Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</h2><p class="desc" class="click-progress"
-    </div>
+        Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</h2>
+      </div>
+     </div>
   </section>
 
   <section id="forum" class="section" style="display:none">
@@ -167,6 +168,8 @@
     <div class="chat-box" class="click-progress">
       <h3 class="click-progress">Tuliskan Pendapat Anda!</h3>
       <textarea placeholder="Komentar Anda sebagai Netijen +62..."></textarea>
+      <div id="comments"></div>
+      
     </div>
   </section>
 
@@ -244,6 +247,13 @@
       document.body.style.background = "linear-gradient(to bottom, #0d47a1, #42a5f5)";
       document.querySelector('nav').style.background = "linear-gradient(to right, #1976d2, #2196f3)";
       document.getElementById('btnPembuat').classList.add('active');
+      window.addEventListener("DOMContentLoaded", () => {
+  const lastPage = localStorage.getItem('lastPage') || 'pembuat';
+
+  if (lastPage === 'forum') goToForum();
+  else if (lastPage === 'info') goToInfo();
+  else goToPembuat();
+});
     }
 
     function goToForum() {
@@ -252,15 +262,26 @@
       document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
       document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
       document.getElementById('btnForum').classList.add('active');
+      window.addEventListener("DOMContentLoaded", () => {
+  const lastPage = localStorage.getItem('lastPage') || 'pembuat';
+
+  if (lastPage === 'forum') goToForum();
+  else if (lastPage === 'info') goToInfo();
+  else goToPembuat();
+});
     }
 
-    function goToInfo() {
-      resetDisplay(); resetNavActive();
-      document.getElementById('info').style.display = 'block';
-      document.body.style.background = "linear-gradient(to bottom, #000000, #ffffff)";
-      document.querySelector('nav').style.background = "linear-gradient(to right, #000000, #ffffff)";
-      document.getElementById('btnInfo').classList.add('active');
-    }
+    function goToForum() {
+  resetDisplay(); 
+  resetNavActive();
+
+  document.getElementById('forum').style.display = 'block';
+  document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
+  document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
+  document.getElementById('btnForum').classList.add('active');
+
+  localStorage.setItem('lastPage', 'forum'); // <== Tambahin ini
+}
 
     
     // Progress bar click effect
@@ -288,17 +309,72 @@
       }
     });
 
-    function goToForum() {
-      resetDisplay(); resetNavActive();
-      document.getElementById('forum').style.display = 'block';
-      document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
-      document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
-      document.getElementById('btnForum').classList.add('active');
-      commentList.innerHTML = ''; // reset komentar setiap buka forum
-    }
+  function goToForum() {
+  resetDisplay(); 
+  resetNavActive();
+
+  document.getElementById('forum').style.display = 'block';
+  document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
+  document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
+  document.getElementById('btnForum').classList.add('active');
+
+  localStorage.setItem('lastPage', 'forum'); // <== Tambahin ini
+}
 
     // default section
     goToPembuat();
   </script>
+  <!-- Script Firebase Komentar -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
+      authDomain: "altan-forum.firebaseapp.com",
+      databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "altan-forum",
+      storageBucket: "altan-forum.appspot.com",
+      messagingSenderId: "490273623604",
+      appId: "1:490273623604:web:93c774600c5d13a3240461",
+      measurementId: "G-V8NL4Q4RF2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const komentarRef = ref(db, 'komentar');
+
+    const commentBox = document.querySelector('#forum textarea');
+    const commentList = document.querySelector('#comments');
+
+    commentBox.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const text = commentBox.value.trim();
+        if (text !== '') {
+          push(komentarRef, {
+            isi: text,
+            waktu: Date.now()
+          });
+          commentBox.value = '';
+        }
+      }
+    });
+
+    function tampilkanKomentar(snapshot) {
+      commentList.innerHTML = '';
+      snapshot.forEach(data => {
+        const val = data.val();
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.textContent = 'Netijen +62: ' + val.isi;
+        commentList.appendChild(div);
+      });
+    }
+
+    onValue(komentarRef, tampilkanKomentar);
+  </script>
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
