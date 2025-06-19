@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altan Forum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" class="click-progress">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(to bottom, #0d47a1, #42a5f5);
+      color: white;
+      overflow-x: hidden;
+      transition: background 0.6s ease;
+    }
+    nav {
+      background: linear-gradient(to right, #1976d2, #2196f3);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.6s ease;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li {
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 5px;
+    }
+    nav ul li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0%;
+      background: white;
+      transition: width 0.4s ease;
+    }
+    nav ul li:hover::after,
+    nav ul li.active::after {
+      width: 100%;
+    }
+    .section {
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .center-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .center-img img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transition: transform 0.6s ease;
+    }
+    .center-img img:hover {
+      transform: scale(1.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .desc {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: bold;
+    }
+    .img-left, .img-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .img-left img, .img-right img {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .img-left { flex-direction: row; }
+    .img-right { flex-direction: row-reverse; }
+
+    .chat-box {
+      margin: 3rem auto;
+      max-width: 700px;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .chat-box h3 {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .chat-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 1rem;
+      border-radius: 10px;
+      border: none;
+      resize: none;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="click-progress"><strong>ALTAN FORUM</strong></div>
+    <ul>
+      <li id="btnPembuat" onclick="goToPembuat()" class="click-progress">Pembuat Website</li>
+      <li id="btnForum" onclick="goToForum()" class="click-progress">Forum</li>
+      <li id="btnInfo" onclick="goToInfo()" class="click-progress">Info Website</li>
+    </ul>
+  </nav>
+
+  <section id="pembuat" class="section">
+    <div class="center-img" class="click-progress"><img src="foto1.jpg" alt="Foto Altan"></div>
+    <h1 class="click-progress">Halo! Aku Altan Reifata Ramadhan, Senang Bertemu Dengan Mu 😎</h1>
+    <p class="desc" class="click-progress">Halo Senang<br><br>Bertemu Dengan<br><br>Mu!<br><br>Apa<br><br>Kabar<br><br>Dengan<br><br>Mu?</p>
+    <h2 style="text-align:center; margin-top: 3rem;" class="click-progress">Hobi Saya Adalah...</h2>
+    <div class="img-left" class="click-progress">
+      <img src="foto2.jpg" alt="Foto 2">
+      <div class="click-progress"><h2 class="click-progress">About Me!</h2><p class="desc" class="click-progress">Hola!, Aku Altan!, Nice To Meet You!<br><br>Aku Tinggal Di Natar Lampung Selatan, Kode Pos Ku 35362<br><br>Aku Membuat Situs Ini Dengan Sepenuh Hati!<br><br>There's A Secret Thing Shuuush</p></div>
+    </div>
+    <div class="img-right" class="click-progress">
+      <img src="foto3.jpg" alt="Foto 3">
+      <div class="click-progress"><h2 class="click-progress">Aku Suka Makan Juga</h2><p class="desc" class="click-progress">Sekarang Aku Akan Menginjak Usia 14 Tahun!,
+        Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</h2><p class="desc" class="click-progress"
+    </div>
+  </section>
+
+  <section id="forum" class="section" style="display:none">
+    <div class="center-img" class="click-progress"><img src="gambarforum.jpg" alt="Berita Forum" style="width: 300px; height: 200px; border-radius: 20px;"></div>
+    <h1 class="click-progress">Halaqah Daring Berujung Pusing</h1>
+    <p class="desc" class="click-progress">Viral!, Halaqah sampe Tangal 14 Juli Daring<br><br>Kemaren Vito Tidur</p>
+    <div class="chat-box" class="click-progress">
+      <h3 class="click-progress">Tuliskan Pendapat Anda!</h3>
+      <textarea placeholder="Komentar Anda sebagai Netijen +62..."></textarea>
+    </div>
+  </section>
+
+  <section id="info" class="section" style="display:none">
+    <h1 style="text-align:center" class="click-progress">Info Website</h1>
+    <p class="desc" class="click-progress">Website ini dibuat oleh Altan Reifata Ramadhan.<br><br>Isi info lainnya bisa ditambahkan di sini.</p>
+  </section>
+
+  <footer>Altan 2025 Alright Reserved™ Ubuntu 22.04.05 Vs Code</footer>
+
+  
+  <style>
+    .click-progress {
+      position: relative;
+      cursor: pointer;
+    }
+    .click-progress::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      height: 3px;
+      width: 0;
+      background: white;
+      transition: width 0.3s ease;
+    }
+    .click-progress.clicked::after {
+      width: 100%;
+    }
+    #forum h1, #forum p, #forum textarea {
+      color: black;
+      font-weight: bold;
+    }
+    .center-img.forum img {
+      width: 400px !important;
+      height: 300px !important;
+    }
+    #comments {
+      margin-top: 1rem;
+    }
+    .comment {
+      background: rgba(255,255,255,0.2);
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.section').forEach((section) => {
+      observer.observe(section);
+    });
+
+    function resetDisplay() {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    }
+
+    function resetNavActive() {
+      document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active'));
+    }
+
+    function goToPembuat() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('pembuat').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #0d47a1, #42a5f5)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #1976d2, #2196f3)";
+      document.getElementById('btnPembuat').classList.add('active');
+    }
+
+    function goToForum() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('forum').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
+      document.getElementById('btnForum').classList.add('active');
+    }
+
+    function goToInfo() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('info').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #000000, #ffffff)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #000000, #ffffff)";
+      document.getElementById('btnInfo').classList.add('active');
+    }
+
+    
+    // Progress bar click effect
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('click-progress')) {
+        e.target.classList.add('clicked');
+        setTimeout(() => e.target.classList.remove('clicked'), 1000);
+      }
+    });
+
+    // Simulated comment system
+    const commentBox = document.querySelector('#forum textarea');
+    const commentList = document.createElement('div');
+    commentList.id = 'comments';
+    document.querySelector('.chat-box').appendChild(commentList);
+
+    commentBox.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const comment = document.createElement('div');
+        comment.className = 'comment';
+        comment.textContent = 'Netijen +62: ' + commentBox.value;
+        commentList.appendChild(comment);
+        commentBox.value = '';
+      }
+    });
+
+    function goToForum() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('forum').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
+      document.getElementById('btnForum').classList.add('active');
+      commentList.innerHTML = ''; // reset komentar setiap buka forum
+    }
+
+    // default section
+    goToPembuat();
+  </script>
+</body>
+</html>
