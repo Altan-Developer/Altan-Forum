@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Altan Forum</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" class="click-progress">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,7 +14,7 @@
     }
     body {
       background: linear-gradient(to bottom, #0d47a1, #42a5f5);
-      color: white;
+      color: rgb(0, 0, 0);
       overflow-x: hidden;
       transition: background 0.6s ease;
     }
@@ -47,7 +46,7 @@
       bottom: 0;
       height: 3px;
       width: 0%;
-      background: white;
+      background: rgb(255, 255, 255);
       transition: width 0.4s ease;
     }
     nav ul li:hover::after,
@@ -105,7 +104,6 @@
     }
     .img-left { flex-direction: row; }
     .img-right { flex-direction: row-reverse; }
-
     .chat-box {
       margin: 3rem auto;
       max-width: 700px;
@@ -126,6 +124,14 @@
       resize: none;
       font-weight: bold;
     }
+    .comment {
+      background: rgba(255,255,255,0.2);
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -142,83 +148,66 @@
       <li id="btnForum" onclick="goToForum()" class="click-progress">Forum</li>
       <li id="btnInfo" onclick="goToInfo()" class="click-progress">Info Website</li>
     </ul>
-  </nav>
-
-  <section id="pembuat" class="section">
-    <div class="center-img" class="click-progress"><img src="foto1.jpg" alt="Foto Altan"></div>
-    <h1 class="click-progress">Halo! Aku Altan Reifata Ramadhan, Senang Bertemu Dengan Mu 😎</h1>
-    <p class="desc" class="click-progress">Halo Senang<br><br>Bertemu Dengan<br><br>Mu!<br><br>Apa<br><br>Kabar<br><br>Dengan<br><br>Mu?</p>
-    <h2 style="text-align:center; margin-top: 3rem;" class="click-progress">Hobi Saya Adalah...</h2>
-    <div class="img-left" class="click-progress">
+  </nav>  <section id="pembuat" class="section">
+    <div class="center-img"><img src="foto1.jpg" alt="Foto Altan"></div>
+    <h1>Halo! Aku Altan Reifata Ramadhan, Senang Bertemu Dengan Mu 😎</h1>
+    <p class="desc">Halo Senang<br><br>Bertemu Dengan<br><br>Mu!<br><br>Apa<br><br>Kabar<br><br>Dengan<br><br>Mu?</p>
+    <h2 style="text-align:center; margin-top: 3rem;">Hobi Saya Adalah...</h2>
+    <div class="img-left">
       <img src="foto2.jpg" alt="Foto 2">
-      <div class="click-progress"><h2 class="click-progress">About Me!</h2><p class="desc" class="click-progress">Hola!, Aku Altan!, Nice To Meet You!<br><br>Aku Tinggal Di Natar Lampung Selatan, Kode Pos Ku 35362<br><br>Aku Membuat Situs Ini Dengan Sepenuh Hati!<br><br>There's A Secret Thing Shuuush</p></div>
+      <div><h2>About Me!</h2><p class="desc">Hola!, Aku Altan!, Nice To Meet You!<br><br>Aku Tinggal Di Natar Lampung Selatan, Kode Pos Ku 35362<br><br>Aku Membuat Situs Ini Dengan Sepenuh Hati!<br><br>There's A Secret Thing Shuuush</p></div>
     </div>
-    <div class="img-right" class="click-progress">
+    <div class="img-right">
       <img src="foto3.jpg" alt="Foto 3">
-      <div class="click-progress"><h2 class="click-progress">Aku Suka Makan Juga</h2><p class="desc" class="click-progress">Sekarang Aku Akan Menginjak Usia 14 Tahun!,
-        Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</h2>
-      </div>
-     </div>
-  </section>
-
-  <section id="forum" class="section" style="display:none">
-    <div class="center-img" class="click-progress"><img src="gambarforum.jpg" alt="Berita Forum" style="width: 300px; height: 200px; border-radius: 20px;"></div>
-    <h1 class="click-progress">Halaqah Daring Berujung Pusing</h1>
-    <p class="desc" class="click-progress">Viral!, Halaqah sampe Tangal 14 Juli Daring<br><br>Kemaren Vito Tidur</p>
-    <div class="chat-box" class="click-progress">
-      <h3 class="click-progress">Tuliskan Pendapat Anda!</h3>
+      <div><h2>Aku Suka Makan Juga</h2><p class="desc">Sekarang Aku Akan Menginjak Usia 14 Tahun!, Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</p></div>
+    </div>
+  </section>  <section id="forum" class="section" style="display:none">
+    <div class="center-img"><img src="gambarforum.jpg" alt="Berita Forum" style="width: 300px; height: 200px; border-radius: 20px;"></div>
+    <h1>Halaqah Daring Berujung Pusing</h1>
+    <p class="desc">Vito Tidur<br><br>Viral!, Halaqah sampai tanggal 14 Juli Daring Ges</p>
+    <div class="chat-box">
+      <h3>Tuliskan Pendapat Anda!</h3>
       <textarea placeholder="Komentar Anda sebagai Netijen +62..."></textarea>
       <div id="comments"></div>
     </div>
-  </section>
+  </section>  <section id="info" class="section" style="display:none">
+    <h1 style="text-align:center">Info Website</h1>
+    <p class="desc">Website ini dibuat oleh Altan Reifata Ramadhan.<br><br>Isi info lainnya bisa ditambahkan di sini.</p>
+  </section>  <footer>Altan 2025 Alright Reserved™</footer>  <!-- Firebase v8 -->  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
+      authDomain: "altan-forum.firebaseapp.com",
+      databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "altan-forum",
+      storageBucket: "altan-forum.appspot.com",
+      messagingSenderId: "490273623604",
+      appId: "1:490273623604:web:93c774600c5d13a3240461",
+      measurementId: "G-V8NL4Q4RF2"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  <section id="info" class="section" style="display:none">
-    <h1 style="text-align:center" class="click-progress">Info Website</h1>
-    <p class="desc" class="click-progress">Website ini dibuat oleh Altan Reifata Ramadhan.<br><br>Isi info lainnya bisa ditambahkan di sini.</p>
-  </section>
+    const commentBox = document.querySelector('#forum textarea');
+    const commentList = document.getElementById('comments');
 
-  <footer>Altan 2025 Alright Reserved™ Ubuntu 22.04.05 Vs Code</footer>
+    commentBox.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const isi = commentBox.value.trim();
+        if (isi !== '') {
+          db.ref("komentar").push({ text: isi });
+          commentBox.value = '';
+        }
+      }
+    });
 
-  
-  <style>
-    .click-progress {
-      position: relative;
-      cursor: pointer;
-    }
-    .click-progress::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      height: 3px;
-      width: 0;
-      background: white;
-      transition: width 0.3s ease;
-    }
-    .click-progress.clicked::after {
-      width: 100%;
-    }
-    #forum h1, #forum p, #forum textarea {
-      color: black;
-      font-weight: bold;
-    }
-    .center-img.forum img {
-      width: 400px !important;
-      height: 300px !important;
-    }
-    #comments {
-      margin-top: 1rem;
-    }
-    .comment {
-      background: rgba(255,255,255,0.2);
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
-    }
-  </style>
-  <script>
+    db.ref("komentar").on('child_added', function(snapshot) {
+      const data = snapshot.val();
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.textContent = 'Netijen +62: ' + data.text;
+      commentList.prepend(div);
+    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -246,13 +235,6 @@
       document.body.style.background = "linear-gradient(to bottom, #0d47a1, #42a5f5)";
       document.querySelector('nav').style.background = "linear-gradient(to right, #1976d2, #2196f3)";
       document.getElementById('btnPembuat').classList.add('active');
-      window.addEventListener("DOMContentLoaded", () => {
-  const lastPage = localStorage.getItem('lastPage') || 'pembuat';
-
-  if (lastPage === 'forum') goToForum();
-  else if (lastPage === 'info') goToInfo();
-  else goToPembuat();
-});
     }
 
     function goToForum() {
@@ -261,29 +243,16 @@
       document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
       document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
       document.getElementById('btnForum').classList.add('active');
-      window.addEventListener("DOMContentLoaded", () => {
-  const lastPage = localStorage.getItem('lastPage') || 'pembuat';
-
-  if (lastPage === 'forum') goToForum();
-  else if (lastPage === 'info') goToInfo();
-  else goToPembuat();
-});
     }
 
-    function goToForum() {
-  resetDisplay(); 
-  resetNavActive();
+    function goToInfo() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('info').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #000000, #ffffff)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #000000, #ffffff)";
+      document.getElementById('btnInfo').classList.add('active');
+    }
 
-  document.getElementById('forum').style.display = 'block';
-  document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
-  document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
-  document.getElementById('btnForum').classList.add('active');
-
-  localStorage.setItem('lastPage', 'forum'); // <== Tambahin ini
-}
-
-    
-    // Progress bar click effect
     document.addEventListener('click', function (e) {
       if (e.target.classList.contains('click-progress')) {
         e.target.classList.add('clicked');
@@ -291,130 +260,6 @@
       }
     });
 
-    // Simulated comment system
-    const commentBox = document.querySelector('#forum textarea');
-    const commentList = document.createElement('div');
-    commentList.id = 'comments';
-    document.querySelector('.chat-box').appendChild(commentList);
-
-    commentBox.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        const comment = document.createElement('div');
-        comment.className = 'comment';
-        comment.textContent = 'Netijen +62: ' + commentBox.value;
-        commentList.appendChild(comment);
-        commentBox.value = '';
-      }
-    });
-
-  function goToForum() {
-  resetDisplay(); 
-  resetNavActive();
-
-  document.getElementById('forum').style.display = 'block';
-  document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
-  document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
-  document.getElementById('btnForum').classList.add('active');
-
-  localStorage.setItem('lastPage', 'forum'); // <== Tambahin ini
-}
-
-    // default section
     goToPembuat();
-  </script>
-  <!-- Script Firebase Komentar -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
-      authDomain: "altan-forum.firebaseapp.com",
-      databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "altan-forum",
-      storageBucket: "altan-forum.appspot.com",
-      messagingSenderId: "490273623604",
-      appId: "1:490273623604:web:93c774600c5d13a3240461",
-      measurementId: "G-V8NL4Q4RF2"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const komentarRef = ref(db, 'komentar');
-
-    const commentBox = document.querySelector('#forum textarea');
-    const commentList = document.querySelector('#comments');
-
-    commentBox.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        const text = commentBox.value.trim();
-        if (text !== '') {
-          push(komentarRef, {
-            isi: text,
-            waktu: Date.now()
-          });
-          commentBox.value = '';
-        }
-      }
-    });
-
-    function tampilkanKomentar(snapshot) {
-      commentList.innerHTML = '';
-      snapshot.forEach(data => {
-        const val = data.val();
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.textContent = 'Netijen +62: ' + val.isi;
-        commentList.appendChild(div);
-      });
-    }
-
-    onValue(komentarRef, tampilkanKomentar);
-  </script>
-
-<script type="module" src="script.js"></script>
-</script>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<script>
-  var firebaseConfig = {
-    apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
-    authDomain: "altan-forum.firebaseapp.com",
-    databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "altan-forum",
-    storageBucket: "altan-forum.appspot.com",
-    messagingSenderId: "490273623604",
-    appId: "1:490273623604:web:93c774600c5d13a3240461",
-    measurementId: "G-V8NL4Q4RF2"
-  };
-  firebase.initializeApp(firebaseConfig);
-  var db = firebase.database();
-
-  var commentBox = document.querySelector('#forum textarea');
-  var commentList = document.getElementById('comments');
-
-  commentBox.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      var isi = commentBox.value.trim();
-      if (isi !== "") {
-        db.ref("komentar").push({ text: isi });
-        commentBox.value = "";
-      }
-    }
-  });
-
-  db.ref("komentar").on('child_added', function(snapshot) {
-    var data = snapshot.val();
-    var div = document.createElement('div');
-    div.className = 'comment';
-    div.textContent = "Netijen +62: " + data.text;
-    commentList.prepend(div);
-  });
-</script>
-</body>
+  </script></body>
 </html>
