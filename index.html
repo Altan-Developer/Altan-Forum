@@ -1,393 +1,265 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Altan Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altan Forum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #6bc6cc, #e9e9e9);
+      background: linear-gradient(to bottom, #0d47a1, #42a5f5);
+      color: rgb(0, 0, 0);
+      overflow-x: hidden;
+      transition: background 0.6s ease;
     }
-    header {
-      background: linear-gradient(to right, #ffffff, #3d9e89);
-      color: rgb(80, 73, 73);
-      padding: 20px 0;
-      text-align: center;
+    nav {
+      background: linear-gradient(to right, #1976d2, #2196f3);
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.6s ease;
     }
-    nav {
-      background-color: #ffffff;
-      text-align: center;
-      padding: 10px 0;
-      position: sticky;
-      top: 60px;
-      z-index: 999;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
     }
-    nav a {
-      font-weight: bold;
-      color: #5ed1cb;
-      margin: 0 20px;
-      text-decoration: none;
+    nav ul li {
+      cursor: pointer;
       position: relative;
+      padding-bottom: 5px;
     }
-    nav a::after {
-      content: '';
+    nav ul li::after {
+      content: "";
       position: absolute;
-      width: 0;
-      height: 3px;
-      background: #8e9ab9;
       left: 0;
-      bottom: -5px;
-      transition: 0.3s;
+      bottom: 0;
+      height: 3px;
+      width: 0%;
+      background: rgb(255, 255, 255);
+      transition: width 0.4s ease;
     }
-    nav a:hover::after {
+    nav ul li:hover::after,
+    nav ul li.active::after {
       width: 100%;
     }
     .section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
+      padding: 4rem 2rem;
       opacity: 0;
       transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition: all 0.8s ease;
     }
-    .section.visible {
+    .section.show {
       opacity: 1;
       transform: translateY(0);
     }
-    .hero {
-      background-image: url('https://source.unsplash.com/1600x500/?freshfish');
-      background-size: cover;
-      background-position: center;
-      color: rgb(255, 255, 255);
-      padding: 120px 20px;
-      text-align: center;
+    .center-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
     }
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 20px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
+    .center-img img {
+      width: 200px;
       height: 200px;
-      object-fit: cover;
-      transition: filter 0.4s ease;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transition: transform 0.6s ease;
     }
-    .card img:hover {
-      filter: brightness(1.1);
+    .center-img img:hover {
+      transform: scale(1.1);
     }
-    .card h3, .card p {
-      margin: 15px;
-    }
-    .progress-bar {
-      height: 4px;
-      width: 0;
-      background-color: #1e3a8a;
-      transition: width 1s ease-out;
-    }
-    .footer {
-      background-color: #49a1a1;
-      color: rgb(245, 245, 245);
+    h1 {
       text-align: center;
-      padding: 20px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .desc {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: bold;
+    }
+    .img-left, .img-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .img-left img, .img-right img {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .img-left { flex-direction: row; }
+    .img-right { flex-direction: row-reverse; }
+    .chat-box {
+      margin: 3rem auto;
+      max-width: 700px;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .chat-box h3 {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .chat-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 1rem;
+      border-radius: 10px;
+      border: none;
+      resize: none;
+      font-weight: bold;
+    }
+    .comment {
+      background: rgba(255,255,255,0.2);
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Altan's Shop</h1>
-    <p>Altan's Shop Web Interaktif Dengan Berbagai Jasa!</p>
-  </header>
-
   <nav>
-    <a href="#tentang">Tentang Kami</a>
-    <a href="#product">Etalase Product</a>
-    <a href="#kontak">Kontak</a>
-  </nav>
-
-  <div class="hero">
-    <h1>Belanja Hemat, Kualitas Mantap</h1>
-    <p>Altan's Developer</p>
-<p style="max-width: 800px; margin: auto; font-size: 16px; color: #333;">
-  Website ini menyediakan <b>10 template CV interaktif</b> dengan tampilan visual modern dan sederhana. 
-  Dibuat khusus untuk <b>pelajar, freelancer</b>, dan siapa saja yang ingin tampil profesional — tanpa ribet, tanpa mahal. 
-  <br><br><b>Harga Pelajar</b> • <b>Bisa Custom</b> • <b>Langsung Pakai</b>
-</p>
-  </div>
-
-  <div class="progress-bar" id="progress-bar"></div>
-
-  <section class="section" id="tentang">
-    <h2>Tentang Altan's Shop</h2>
-    <p>Altan's Shop Adalah Website interaktif Dan Memiliki Banyak Pilihan Etalase, Kapan Lagi Belanja Murah Tapi Berkualitas?.. Hanya Di Altan's Shop!</p>
-  </section>
-
-  <section class="section" id="product">
-    <h2>Etalase Product</h2>
-    <div class="cards">
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%201" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk1.png" alt="Produk 1">
-    <h3>Jasa Pembuatan Portofolio Website</h3>
-    <p>Rp 8.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%202" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk2.png" alt="Produk 2">
-    <h3>Template Index HTML Interaktif</h3>
-    <p>Rp 6.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%203" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk3.png" alt="Produk 3">
-    <h3>Jasa Membuat Design Canva</h3>
-    <p>Rp Tergantung Kemauan</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%204" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk4.png" alt="Produk 4">
-    <h3>Jasa Set Hosting Web Github LifeTime</h3>
-    <p>Rp 3.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%205" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk5.png" alt="Produk 5">
-    <h3> Membuat Presentasi Canva</h3>
-    <p>Rp Tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%206" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk6.png" alt="Produk 6">
-    <h3>Membuat Data Laporan SpreadSheets</h3>
-    <p>Rp 10.000 - 36.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%207" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk7.png" alt="Produk 7">
-    <h3>Jasa Pembuatan Akun Google</h3>
-    <p>Rp 500</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%208" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk8.png" alt="Produk 8">
-    <h3>Jasa Coding Tugas Sekolah Membuat Web Interaktif AI</h3>
-    <p>Rp 10.000 - 37.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%209" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk9.png" alt="Produk 9">
-    <h3>Jasa Pembuatan Custom Akun Domain</h3>
-    <p>Rp 30.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2010" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk10.png" alt="Produk 10">
-    <h3>Jasa Pembuatan Poster Canva Include Pro</h3>
-    <p>Rp 30.000 - tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2011" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk11.png" alt="Produk 11">
-    <h3>Template CV</h3>
-    <p>Rp5.000 - 13.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2012" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk12.png" alt="Produk 12">
-    <h3>Membuat Poster Grid Instagram 9 Grid</h3>
-    <p>Rp 1.000 - 5.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2013" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk13.png" alt="Produk 13">
-    <h3>Secret Message To Other People</h3>
-    <p>Rp 1.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2014" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk14.png" alt="Produk 14">
-    <h3>Template CV</h3>
-    <p>Rp Tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2015" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk15.png" alt="Produk 15">
-    <h3>Jasa Membuat Powerpoint Slide No Animation Max 20 Slide</h3>
-    <p>Rp 10.000  - 20.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2016" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk15.png" alt="Produk 16">
-    <h3>Jasa Membuat Slide PowerPoint Full Animasi Max 40 Slide</h3>
-    <p>Rp 50.000 - 75.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2017" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk15.png" alt="Produk 17">
-    <h3>Jasa Membuat Slide PowerPoint Full animasi + Custom</h3>
-    <p>Rp 100.000 - Tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2018" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk12.png" alt="Produk 18">
-    <h3>Buat Feed Instagram Aestetich</h3>
-    <p>Rp Tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2019" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk9.png" alt="Produk 19">
-    <h3>Template Website</h3>
-    <p>Rp Tergantung</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2020" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk20.png" alt="Produk 20">
-    <h3>Jasa Membuat Jadwal Pelajaran Kelas Aestetich</h3>
-    <p>Rp 3.000 - 5.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2021" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk21.png" alt="Produk 21">
-    <h3>SpreadSheets Habbits</h3>
-    <p>Rp 9.000</p>
-  </div>
-</a>
-
-
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20pesan%20Produk%2022" target="_blank" style="text-decoration: none; color: inherit;">
-  <div class="card">
-    <img src="produk22.png" alt="Produk 22">
-    <h3>SpreadSheets Kaluna Home Sweet Loan </h3>
-    <p>Rp 35.000</p>
-  </div>
-</a>
-
-</div>
+    <div class="click-progress"><strong>ALTAN FORUM</strong></div>
+    <ul>
+      <li id="btnPembuat" onclick="goToPembuat()" class="click-progress">Pembuat Website</li>
+      <li id="btnForum" onclick="goToForum()" class="click-progress">Forum</li>
+      <li id="btnInfo" onclick="goToInfo()" class="click-progress">Info Website</li>
+    </ul>
+  </nav>  <section id="pembuat" class="section">
+    <div class="center-img"><img src="foto1.jpg" alt="Foto Altan"></div>
+    <h1>Halo! Aku Altan Reifata Ramadhan, Senang Bertemu Dengan Mu 😎</h1>
+    <p class="desc">Halo Senang<br><br>Bertemu Dengan<br><br>Mu!<br><br>Apa<br><br>Kabar<br><br>Dengan<br><br>Mu?</p>
+    <h2 style="text-align:center; margin-top: 3rem;">Hobi Saya Adalah...</h2>
+    <div class="img-left">
+      <img src="foto2.jpg" alt="Foto 2">
+      <div><h2>About Me!</h2><p class="desc">Hola!, Aku Altan!, Nice To Meet You!<br><br>Aku Tinggal Di Natar Lampung Selatan, Kode Pos Ku 35362<br><br>Aku Membuat Situs Ini Dengan Sepenuh Hati!<br><br>There's A Secret Thing Shuuush</p></div>
     </div>
-  </section>
+    <div class="img-right">
+      <img src="foto3.jpg" alt="Foto 3">
+      <div><h2>Aku Suka Makan Juga</h2><p class="desc">Sekarang Aku Akan Menginjak Usia 14 Tahun!, Aku Bersekolah Di Darrul Fattah Bandar Lampung, Aku Sangat Tertarik Dalam Dunia Teknologi!</p></div>
+    </div>
+  </section>  <section id="forum" class="section" style="display:none">
+    <div class="center-img"><img src="gambarforum.jpg" alt="Berita Forum" style="width: 300px; height: 200px; border-radius: 20px;"></div>
+    <h1>Halaqah Daring Berujung Pusing</h1>
+    <p class="desc">Vito Tidur<br><br>Viral!, Halaqah sampai tanggal 14 Juli Daring Ges</p>
+    <div class="chat-box">
+      <h3>Tuliskan Pendapat Anda!</h3>
+      <textarea placeholder="Komentar Anda sebagai Netijen +62..."></textarea>
+      <div id="comments"></div>
+    </div>
+  </section>  <section id="info" class="section" style="display:none">
+    <h1 style="text-align:center">Info Website</h1>
+    <p class="desc">Website ini dibuat oleh Altan Reifata Ramadhan.<br><br>Isi info lainnya bisa ditambahkan di sini.</p>
+  </section>  <footer>Altan 2025 Alright Reserved™</footer>  <!-- Firebase v8 -->  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2TBDAI7AseqZSMnVgyBuqbKhmqnjsPRU",
+      authDomain: "altan-forum.firebaseapp.com",
+      databaseURL: "https://altan-forum-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "altan-forum",
+      storageBucket: "altan-forum.appspot.com",
+      messagingSenderId: "490273623604",
+      appId: "1:490273623604:web:93c774600c5d13a3240461",
+      measurementId: "G-V8NL4Q4RF2"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  <section class="section" id="kontak">
-    <h2>Kontak Kami</h2>
-    <p>Alamat: Jl. Ontorejo Natar Lampung Selatan</p>
-    <p>Telepon: 083191873609</p>
-    <p>Email: altanbusiness91@gmail.com</p>
-  </section>
+    const commentBox = document.querySelector('#forum textarea');
+    const commentList = document.getElementById('comments');
 
-  <div class="footer">
-    <p>&copy; 2025 Altan's. Copyright 2025</p>
-  </div>
+    commentBox.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const isi = commentBox.value.trim();
+        if (isi !== '') {
+          db.ref("komentar").push({ text: isi });
+          commentBox.value = '';
+        }
+      }
+    });
 
-  <script>
-    const sections = document.querySelectorAll('.section');
+    db.ref("komentar").on('child_added', function(snapshot) {
+      const data = snapshot.val();
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.textContent = 'Netijen +62: ' + data.text;
+      commentList.prepend(div);
+    });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('show');
         }
       });
-    }, {
-      threshold: 0.1
     });
-    sections.forEach(section => observer.observe(section));
 
-    const progressBar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-      const max = document.body.scrollHeight - innerHeight;
-      const percent = (scrollY / max) * 100;
-      progressBar.style.width = percent + '%';
+    document.querySelectorAll('.section').forEach((section) => {
+      observer.observe(section);
     });
-  </script>
 
-</body>
+    function resetDisplay() {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    }
+
+    function resetNavActive() {
+      document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active'));
+    }
+
+    function goToPembuat() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('pembuat').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #0d47a1, #42a5f5)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #1976d2, #2196f3)";
+      document.getElementById('btnPembuat').classList.add('active');
+    }
+
+    function goToForum() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('forum').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #fff, #ffcdd2, #f48fb1)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #fff, #ffcdd2, #f48fb1)";
+      document.getElementById('btnForum').classList.add('active');
+    }
+
+    function goToInfo() {
+      resetDisplay(); resetNavActive();
+      document.getElementById('info').style.display = 'block';
+      document.body.style.background = "linear-gradient(to bottom, #000000, #ffffff)";
+      document.querySelector('nav').style.background = "linear-gradient(to right, #000000, #ffffff)";
+      document.getElementById('btnInfo').classList.add('active');
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('click-progress')) {
+        e.target.classList.add('clicked');
+        setTimeout(() => e.target.classList.remove('clicked'), 1000);
+      }
+    });
+
+    goToPembuat();
+  </script></body>
 </html>
-
